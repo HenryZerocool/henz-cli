@@ -3,11 +3,13 @@ setup(
     name = 'henzcli',
     version = '0.1.0',
     packages = ['henzcli'],
-    install_requires=[
+    install_requires = [
         'requests',
         'beautifulsoup4',
         'python-dotenv',
-        'colorama'
+        'colorama',
+        'black',
+        'flake8'
     ],
     entry_points = {
         'console_scripts': [

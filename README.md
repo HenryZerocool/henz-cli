@@ -3,17 +3,6 @@
 osd release 0.1  
 A cli tools to check broken links in HTML files
 
-## Installation
-
-   1. install python
-   2. to install cli open terminal and run:
-
-    pip3 install -e .
-
-   3. to uninstall run:
-
-    pip3 uninstall henzcli
-
 ## Usage
 
 Basic usage:
