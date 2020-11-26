@@ -35,21 +35,14 @@ def main():
         if (args[0] == "--good"):
             onlyGood = True
             allIncluded = False
-        if (args[0] == "--bad"):
+        else if (args[0] == "--bad"):
             onlyBad = True
             allIncluded = False
-        if (args[0] == "--all"):
+        else if (args[0] == "--all"):
             allIncluded = True
-        ## support version check
         if (args[0] == "-v" or args[0] == "--version"):
             print("HenZCLI version 0.1")
-        # else:
-            # print('count of args :: {}'.format(len(args)))  
         print('passed argument :: {}'.format(args))
-            # goodList = []
-            # badList = []
-            # unknownList = []
-            ## support multiple files as arguments
         for arg in args:
             if (arg[0] != "-"):
                 try: 
@@ -71,36 +64,25 @@ def main():
                                     print(redColor + "Bad link " + URL + noColor)                                    
                                 else:
                                     print("Bad link " + URL)
-                                # print(redColor + "Bad link " + URL + noColor)
-                                # badList.append(URL)
                             elif ((onlyGood or allIncluded) and requestObj.status_code == 200):
                                 if (CLICOLOR):
                                     print(greenColor + "Good link " + URL + noColor)
                                 else:
                                     print("Good link " + URL)
-                                # print(greenColor + "Good link " + URL + noColor)
-                                # goodList.append(URL)
                             else:
                                 if (allIncluded):
                                     if (CLICOLOR):
                                         print(dgrayColor + "Unknown "+ URL + noColor)
                                     else:
                                         print("Unknown "+ URL)
-                                    # print(dgrayColor + "Unknown "+ URL + noColor)
-                                    # unknownList.append(URL)
                         except:
                             if (allIncluded):
                                 if (CLICOLOR):
                                     print(dgrayColor + "Unknown "+ URL + noColor)
                                 else:
                                     print("Unknown "+ URL)
-                                # print(dgrayColor + "Unknown "+ URL + noColor)
-                                # unknownList.append(URL)
                 except:
                     print(dgrayColor + "Unable to open file " + arg)
-                # for link in goodList:
-                # for link in badList:
-                # for link in unknownList:
 
 if __name__ == '__main__':
     main()
