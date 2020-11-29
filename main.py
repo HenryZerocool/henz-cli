@@ -83,10 +83,6 @@ def main():
                     print(dgrayColor + "Unable to open file " + arg)
 
 
-if __name__ == "__main__":
-    main()
-
-
 def goodBad(flag):
     if flag == "--good":
         return 1

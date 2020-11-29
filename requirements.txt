@@ -1,0 +1,7 @@
+requests
+colorama
+black
+flake8
+coverage
+beautifulsoup4
+python-dotenv
