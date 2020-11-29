@@ -6,6 +6,7 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), "../.env")
 load_dotenv(dotenv_path)
+# support color/noncolored from env
 if os.environ.get("CLICOLOR") is None:
     CLICOLOR = True
 else:
@@ -19,6 +20,7 @@ def main():
     greenColor = "\033[92m"
     dgrayColor = "\033[90m"
     purpleColor = "\033[95m"
+    # parsing arguements
     args = sys.argv[1:]
     # support help
     if len(args) < 1:
@@ -26,17 +28,9 @@ def main():
         print("Basic usage as follow\n")
         print("\thenzcli <path to html file> <another file>\n")
     else:
-        # support link list flag, bad code :(
-        onlyGood = onlyBad = None
-        allIncluded = True
-        if args[0] == "--good":
-            onlyGood = True
-            allIncluded = False
-        elif args[0] == "--bad":
-            onlyBad = True
-            allIncluded = False
-        elif args[0] == "--all":
-            allIncluded = True
+        # support good/bad/all flag
+        allIncluded = goodBad(args[0])
+        # support version
         if args[0] == "-v" or args[0] == "--version":
             print("HenZCLI version 0.1")
         print("passed argument :: {}".format(args))
@@ -55,31 +49,29 @@ def main():
                         URL = link.get("href").strip()
                         try:
                             # test links
-                            requestObj = requests.get(URL)
+                            status_code = getRequestStatus(URL)
                             if (
-                                (onlyBad or allIncluded)
-                                and requestObj.status_code == 404
-                                or requestObj.status_code == 401
+                                (allIncluded == 0 or allIncluded == 2)
+                                and status_code == 404
+                                or status_code == 401
                             ):
                                 if CLICOLOR:
                                     print(redColor + "Bad link " + URL + noColor)
                                 else:
                                     print("Bad link " + URL)
-                            elif (
-                                onlyGood or allIncluded
-                            ) and requestObj.status_code == 200:
+                            elif (allIncluded == 1 or allIncluded == 0) and status_code == 200:
                                 if CLICOLOR:
                                     print(greenColor + "Good link " + URL + noColor)
                                 else:
                                     print("Good link " + URL)
                             else:
-                                if allIncluded:
+                                if allIncluded == 0:
                                     if CLICOLOR:
                                         print(dgrayColor + "Unknown " + URL + noColor)
                                     else:
                                         print("Unknown " + URL)
                         except Exception:
-                            if allIncluded:
+                            if allIncluded == 0:
                                 if CLICOLOR:
                                     print(dgrayColor + "Unknown " + URL + noColor)
                                 else:
@@ -90,3 +82,15 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def goodBad(flag):
+    if flag == "--good":
+        return 1
+    elif flag == "--bad":
+        return 2
+    else:
+        return 0
+
+def getRequestStatus(URL):
+    requestObj = requests.get(URL)
+    return requestObj.status_code

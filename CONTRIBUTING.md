@@ -20,3 +20,20 @@
 2. Please check your code using `flake8` linter in your command line:
 
         flake8 .
+
+3. Please make sure your work pass all test:
+
+        python -m unittest test
+
+4. (Optional) If you want to check test coverage and then add more tests:
+
+    4a. Option 1:
+
+        coverage report -m
+
+    4b. Option 2 (better readability):
+
+        coverage report -m > ./test/coverage_report.log
+
+    then open the log file
+

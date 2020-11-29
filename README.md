@@ -20,3 +20,7 @@ You can add environment variable or add variable in .env to override default col
 
     ## in .env
     CLICOLOR = 0 // no color result, default is 1
+
+## Contributors
+
+Contribution are welcome, please check [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
