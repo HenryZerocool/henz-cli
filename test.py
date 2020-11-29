@@ -23,11 +23,18 @@ class URLResponse(unittest.TestCase):
         self.assertEqual(status, 200)
 
     @patch('henzcli.__main__.requests.get')
-    def test_url_error(self, mock_get):
+    def test_url_404(self, mock_get):
         url = "https://google.com/"
         mock_get.return_value.status_code = 404
         status = __main__.getRequestStatus(url)
         self.assertEqual(status, 404)
+
+    @patch('henzcli.__main__.requests.get')
+    def test_url_502(self, mock_get):
+        url = "https://google.com/"
+        mock_get.return_value.status_code = 502
+        status = __main__.getRequestStatus(url)
+        self.assertEqual(status, 502)
 
 
 if __name__ == '__main__':
