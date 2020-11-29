@@ -14,6 +14,6 @@ setup(
     ],
     entry_points = {
         'console_scripts': [
-            'henzcli = henzcli.__main__:main'
+            'henzcli = main:main'
         ]
     })
