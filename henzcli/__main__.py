@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
+
 dotenv_path = join(dirname(__file__), "../.env")
 load_dotenv(dotenv_path)
 # support color/noncolored from env
@@ -59,7 +60,9 @@ def main():
                                     print(redColor + "Bad link " + URL + noColor)
                                 else:
                                     print("Bad link " + URL)
-                            elif (allIncluded == 1 or allIncluded == 0) and status_code == 200:
+                            elif (
+                                allIncluded == 1 or allIncluded == 0
+                            ) and status_code == 200:
                                 if CLICOLOR:
                                     print(greenColor + "Good link " + URL + noColor)
                                 else:
@@ -83,6 +86,7 @@ def main():
 if __name__ == "__main__":
     main()
 
+
 def goodBad(flag):
     if flag == "--good":
         return 1
@@ -91,6 +95,7 @@ def goodBad(flag):
     else:
         return 0
 
+
 def getRequestStatus(URL):
-    requestObj = requests.get(URL)
+    requestObj = requests.get(URL, timeout=2)
     return requestObj.status_code
