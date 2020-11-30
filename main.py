@@ -36,7 +36,8 @@ def main():
             print("HenZCLI version 0.1")
         print("passed argument :: {}".format(args))
         for arg in args:
-            if arg[0] != "-":
+            validFile = fileValidation(arg)
+            if validFile == 0:
                 try:
                     f = open(arg, "r")
                     if CLICOLOR:
@@ -95,3 +96,9 @@ def goodBad(flag):
 def getRequestStatus(URL):
     requestObj = requests.get(URL, timeout=2)
     return requestObj.status_code
+
+def fileValidation(fileName):
+    if fileName[0] != "-" and fileName.find(".html") >= 0:
+        return 0
+    else:
+        return -1

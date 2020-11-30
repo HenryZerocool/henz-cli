@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from main import goodBad, getRequestStatus
+from main import goodBad, getRequestStatus, fileValidation
 
 
 class Flags(unittest.TestCase):
@@ -36,6 +36,10 @@ class URLResponse(unittest.TestCase):
         status = getRequestStatus(url)
         self.assertEqual(status, 502)
 
+class fileValidationTest(unittest.TestCase):
+    def test_invalid_file(self):
+        status = fileValidation("randomname")
+        self.assertEqual(status, -1)
 
 if __name__ == '__main__':
     unittest.main()
