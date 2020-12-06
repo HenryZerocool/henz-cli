@@ -1,6 +1,10 @@
 # Environment Setup
 
-1. install python
+1. install python3
+2. clone this repo:
+
+        git clone https://github.com/HenryZerocool/henz-cli
+
 2. to install cli open terminal and run:
 
         pip3 install -e .
