@@ -3,6 +3,16 @@
 osd release 0.1  
 A cli tools to check broken links in HTML files
 
+## Installation
+
+Please use `pip3` instead of `pip` because Python3 is required:
+
+    pip3 install henzcli
+
+To uninstall:
+
+    pip3 uninstall henzcli
+
 ## Usage
 
 Basic usage:
