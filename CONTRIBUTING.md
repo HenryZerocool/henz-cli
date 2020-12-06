@@ -5,11 +5,11 @@
 
         git clone https://github.com/HenryZerocool/henz-cli
 
-2. to install cli open terminal and run:
+3. to install cli open terminal and run:
 
         pip3 install -e .
 
-3. to uninstall run:
+4. to uninstall run:
 
         pip3 uninstall henzcli
 

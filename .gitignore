@@ -126,3 +126,4 @@ dmypy.json
 
 # cli installation
 henzcli.egg-info
+.pypirc
